@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance+ |Dashboard</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Finance+</div>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#transactions">Transactions</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Welcome to Your Finance+ Dashboard</h1>
+        <p>Manage your finances effortlessly with real-time insights and quick actions.</p>
+    </section>
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Account Balance</h3>
+                <p class="balance" id="balance">$5,250.00</p>
+                <p>Current available balance in your account.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Recent Transactions</h3>
+                <ul id="transactions">
+                    <li>Loading...</li>
+                </ul>
+                <p>View your latest financial activities.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Quick Actions</h3>
+                <button class="btn" onclick="addTransaction()">Add Transaction</button>
+                <button class="btn" onclick="updateBalance()">Update Balance</button>
+                <button class="btn" onclick="alert('Feature coming soon!')">View Reports</button>
+                <p>Perform common tasks with one click.</p>
+            </div>
+        </div>
+        <div class="features-section">
+            <h2 class="section-title">Additional Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Expense Tracking</h3>
+                    <p>Monitor your spending habits and categorize expenses.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Goal Setting</h3>
+                    <p>Set financial goals and track your progress towards them.</p>
+                    <a href="#" class="btn">Set Goals</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Get alerts for important financial events and reminders.</p>
+                    <a href="#" class="btn">Manage Alerts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Finance+. All rights reserved.</p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

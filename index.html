@@ -1,48 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-      <header>
-         <h1>welcome to html</h1>
-         <nav>
-          <ul>
-            <li>
-              <a href="/home.html">Home</a>
-            </li>
-            <li>
-              <a href="/">index</a>
-            </li>
-            <li>
-              <a href="/menu.html">Menu</a>
-            </li>
-          </ul>
-         </nav>
-        </header>
-          <main>
-            <h2>semantic elements</h2>
-            <p>semantic elements are elemnts that have
-               clear description and are understandable by
-               both browser and developer. <a href="https://zinduaschool.com/?srsltid=AfmBOop1zQf0ADsba-yMeFdlrGBzS5VjUJsO4t30xp6ZWsgp_zeA7wgh">
-                click to read more</a> </p>
-                <a href="https://www.pinterest.com/">view my favourit website</a>
-                <section>
-                  <h3>About html</h3>
-                  <p>html is the standard language for frontend</p>
-                </section>
-                <section>
-                  <h3>history of html</h3>
-                  <p>html is the standard language for frontend</p>
-                  <article>
-                    <h3>semantic elements</h3>
-                    <p>semantic elements are elemnts that have
-               clear description and are understandable by
-               both browser and developer.</p>
-                  </article>
-                </section>
-            </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Calorie Counter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+  <div class="container bg-white p-6 rounded-xl shadow-md w-96">
+    <h1 class=" text-purple-800 text-2xl font-bold mb-4 text-center">Calorie Counter</h1>
+
+    <!-- Form -->
+    <form id="food-form" class="flex flex-col gap-2">
+      <input type="text" id="food-name" placeholder="Food name" class="border p-2 rounded" required>
+      <input type="number" id="calories" placeholder="Calories" class="border p-2 rounded" required>
+      <button class="bg-blue-500 text-white p-2 rounded">Add Food</button>
+    </form>
+
+    <!-- List -->
+    <ul id="food-list" class="mt-4 space-y-2"></ul>
+
+    <!-- Total -->
+    <h2 class="mt-4 text-lg font-semibold">
+      Total Calories: <span id="total">0</span>
+    </h2>
+
+    <!-- Reset -->
+    <button id="reset" class="mt-3 bg-red-500 text-white p-2 rounded w-full">
+      Reset
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

@@ -3,21 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Personalized Webpage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+     <script src="/project.js"></script>
+    
 </head>
-<body>
- 
-   <nav>
-     <ul>
-       <li><a href="index.html">Home</a></li>
-       <li><a href="contact.html">Contact Us</a></li>
-     </ul>
-   </nav>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Form Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 max-w-md mx-auto">
+            <h1 class="text-3xl font-bold text-purple-800 mb-6">Welcome to our website!</h1>
+            <form id="userForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Name:</label>
+                    <input type="text" id="nameInput" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Age:</label>
+                    <input type="number" id="ageInput" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition">Submit</button>
+            </form>
+        </div>
 
-   <main>
-      <h1>welcome to my It Project</h1>
-      <p>This is the main landing page for the development task</p>
-   </main>
-   
+        <!-- Content Section -->
+        <div id="contentSection" class="hidden space-y-8">
+            <!-- Greeting Section -->
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+                <h2 id="greeting" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <p id="ageInMonths" class="text-lg text-gray-700"></p>
+            </div>
+
+            <!-- Age Restriction Section -->
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+                <p id="ageRestriction" class="text-lg font-semibold text-gray-800"></p>
+            </div>
+
+            <!-- Motivational Quote Section -->
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Motivational Quote:</h3>
+                <div id="quoteContainer" class="space-y-4"></div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="text-center">
+                <button onclick="resetForm()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

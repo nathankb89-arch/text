@@ -1,0 +1,136 @@
+
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      z-index: 3;
+    }
+
+    .logo {
+      color: #eef5f0;
+      font-size: xx-large;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px; 
+      border: #eef5f0 1px solid;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #cbd5f5;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #b80dec;
+      border-bottom: 2px solid #22c55e;
+    }
+
+    /* WELCOME SECTION */
+    .welcome {
+      position: relative;
+      height: 100vh;
+
+      background: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3') center/cover no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(2, 6, 23, 0.75);
+    }
+
+    /* CONTENT */
+    .welcome-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .welcome-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .welcome-content p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      color: #cbd5f5;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: #b222c5;
+      color: #ece5e5;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #22c55e;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .welcome-content h1 {
+        font-size: 2rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  

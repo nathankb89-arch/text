@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portfolio</title>
+    <link rel="stylesheet" href="/investment.css">
+</head>
+<body>
+    <header>
+        <h1>InvestHub</h1>
+        <nav>
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <section class="login-section" id="loginSection">
+        <div class="login-card">
+            <div id="message" class="message"></div>
+            <h3>Login to Your Portfolio</h3>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="container" id="portfolioContainer" style="display: none;">
+        <div class="portfolio-card">
+            <h3>Portfolio Summary</h3>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-label">Total Portfolio Value</div>
+                    <div class="stat-value" id="totalValue">$0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Total Gain/Loss</div>
+                    <div class="stat-value" id="totalGain">$0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Number of Investments</div>
+                    <div class="stat-value" id="investmentCount">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-card">
+            <h3>Your Investments</h3>
+            <div class="portfolio-grid" id="investmentsList"></div>
+            <button class="btn btn-secondary" onclick="showAddForm()">+ Add Investment</button>
+        </div>
+
+        <div class="portfolio-card hidden" id="addInvestmentForm">
+            <h3>Add New Investment</h3>
+            <form onsubmit="handleAddInvestment(event)">
+                <div class="form-group">
+                    <label for="investmentName">Investment Name</label>
+                    <input type="text" id="investmentName" placeholder="e.g., Apple Stock" required>
+                </div>
+                <div class="form-group">
+                    <label for="investmentType">Type</label>
+                    <select id="investmentType" required>
+                        <option value="">Select Type</option>
+                        <option value="Stock">Stock</option>
+                        <option value="Bond">Bond</option>
+                        <option value="Crypto">Cryptocurrency</option>
+                        <option value="Fund">Mutual Fund</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="investmentAmount">Initial Amount ($)</label>
+                    <input type="number" id="investmentAmount" placeholder="0.00" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="currentValue">Current Value ($)</label>
+                    <input type="number" id="currentValue" placeholder="0.00" step="0.01" required>
+                </div>
+                <button type="submit" class="btn">Add Investment</button>
+                <button type="button" class="btn btn-secondary" onclick="hideAddForm()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About InvestHub</h3>
+                <p>InvestHub helps you manage and track your investment portfolio with ease.</p>
+                <div class="social-icons">
+                    <a href="#">f</a>
+                    <a href="#">tw</a>
+                    <a href="#">in</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 InvestHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+   <script src="/investment.js"></script>
+</body>
+</html>

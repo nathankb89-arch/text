@@ -1,0 +1,79 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Finance+</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/landing.css">
+</head>
+<body>
+    <header>
+        <h1>Finance+</h1>
+        <nav>
+            <button onclick="openModal('login')">Login</button>
+            <button onclick="openModal('signup')">Sign Up</button>
+        </nav>
+    </header>
+    <section class="hero">
+        <h2>Welcome to Finance+</h2>
+        <p>Your trusted partner in financial management. Track expenses, manage budgets, and achieve your goals.</p>
+        <button class="cta-button" onclick="openModal('getStarted')">Get Started</button>
+    </section>
+    <section class="features">
+        <div class="feature-card" onclick="openModal('feature1')">
+            <div class="feature-icon">💰</div>
+            <h3>Expense Tracking</h3>
+            <p>Monitor your daily expenses effortlessly.</p>
+        </div>
+        <div class="feature-card" onclick="openModal('feature2')">
+            <div class="feature-icon">📊</div>
+            <h3>Budget Management</h3>
+            <p>Set and stick to your financial budgets.</p>
+        </div>
+        <div class="feature-card" onclick="openModal('feature3')">
+            <div class="feature-icon">🎯</div>
+            <h3>Goal Setting</h3>
+            <p>Achieve your financial goals with ease.</p>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Users</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$1M+</div>
+                <div class="stat-label">Saved</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Satisfaction</div>
+            </div>
+        </div>
+    </section>
+    <section class="interaction-section">
+        <h3>User Interactions</h3>
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </section>
+    <footer>
+        <p>&copy; 2026 Finance+. All rights reserved.</p>
+    </footer>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Modal Title</h3>
+            <p id="modalContent">Modal content goes here.</p>
+        </div>
+    </div>
+    <script src="landing.js">
+       
+    </script>
+</body>
+</html>
