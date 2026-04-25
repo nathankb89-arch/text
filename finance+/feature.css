@@ -113,7 +113,7 @@
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: rgb(241, 230, 230);
             padding: 0.7rem 1.5rem;
             border-radius: 5px;
             text-decoration: none;
@@ -125,6 +125,7 @@
 
         .btn:hover {
             opacity: 0.9;
+            color: #000;
         }
 
         .features-section {
