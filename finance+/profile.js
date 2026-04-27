@@ -65,11 +65,19 @@
             showMessage(`Navigating to ${page}...`, 'success');
         }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                showMessage('Logging out...', 'success');
-                setTimeout(() => {
-                    alert('Logged out successfully');
-                }, 1000);
+        function addGoal(event) {
+            event.preventDefault();
+            const goal = {
+                name: document.getElementById('goalName').value,
+                targetAmount: parseFloat(document.getElementById('targetAmount').value),
+                currentAmount: parseFloat(document.getElementById('currentAmount').value),
+                deadline: document.getElementById('deadline').value
+            };
+            if (!goal.name || isNaN(goal.targetAmount) || isNaN(goal.currentAmount) || !goal.deadline) {
+                showMessage('Please fill in all goal fields correctly', 'error');
+                return;
             }
+            showMessage(`Goal "${goal.name}" added successfully!`, 'success');
+            document.getElementById('goalForm').reset();
         }
+        
