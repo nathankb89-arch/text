@@ -3,77 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance+ |Dashboard</title>
+    <title>Finance+ Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body>
     <header>
+        <h1>💰 Finance+</h1>
         <nav>
-            <div class="logo">Finance+</div>
-            <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#transactions">Transactions</a></li>
-                <li><a href="#settings">Settings</a></li>
-            </ul>
+            <button><a href="/home.html"><i class="fas fa-home"></i></a></button>
+               <button><a href="/feature.html"><i class="fas fa-star"></i></a></button>
         </nav>
     </header>
-    <section class="hero">
-        <h1>Welcome to Your Finance+ Dashboard</h1>
-        <p>Manage your finances effortlessly with real-time insights and quick actions.</p>
-    </section>
     <div class="container">
-        <div class="dashboard-grid">
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Account Balance</h3>
-                <p class="balance" id="balance">$5,250.00</p>
-                <p>Current available balance in your account.</p>
+        <div class="hero-card">
+            <div>
+                <h2>Welcome to Finance+</h2>
+                <p>Manage your finances effortlessly with our intuitive dashboard. Track investments, view stats, and stay updated.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Recent Transactions</h3>
-                <ul id="transactions">
-                    <li>Loading...</li>
-                </ul>
-                <p>View your latest financial activities.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Quick Actions</h3>
-                <button class="btn" onclick="addTransaction()">Add Transaction</button>
-                <button class="btn" onclick="updateBalance()">Update Balance</button>
-                <button class="btn" onclick="alert('Feature coming soon!')">View Reports</button>
-                <p>Perform common tasks with one click.</p>
+            <div class="hero-actions">
+                <button onclick="showMessage('success', 'Quick action performed!')">Quick Action</button>
+                <button onclick="showMessage('error', 'Feature not available yet.')">Explore Features</button>
             </div>
         </div>
-        <div class="features-section">
-            <h2 class="section-title">Additional Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Expense Tracking</h3>
-                    <p>Monitor your spending habits and categorize expenses.</p>
-                    <a href="#" class="btn">Learn More</a>
+        <div class="stats-overview">
+            <div class="filters">
+                <button class="active" onclick="filterStats('all')">All</button>
+                <button onclick="filterStats('week')">This Week</button>
+                <button onclick="filterStats('month')">This Month</button>
+                <button onclick="filterStats('year')">This Year</button>
+            </div>
+            <div class="summary">
+                <p>Total Portfolio: $125,000</p>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">Total Balance</div>
+                <div class="stat-value">$45,230</div>
+                <div class="stat-change">+5.2%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Investments</div>
+                <div class="stat-value">$32,450</div>
+                <div class="stat-change">+3.8%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Savings</div>
+                <div class="stat-value">$12,780</div>
+                <div class="stat-change">+1.5%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Expenses</div>
+                <div class="stat-value">$8,500</div>
+                <div class="stat-change">-2.1%</div>
+            </div>
+        </div>
+        <div class="message" id="message"></div>
+        <div class="portfolio-card">
+            <h3>Add to Portfolio</h3>
+            <form id="portfolioForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="asset">Asset Type</label>
+                        <select id="asset">
+                            <option value="stock">Stock</option>
+                            <option value="bond">Bond</option>
+                            <option value="crypto">Cryptocurrency</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" placeholder="Enter amount">
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Goal Setting</h3>
-                    <p>Set financial goals and track your progress towards them.</p>
-                    <a href="#" class="btn">Set Goals</a>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="symbol">Symbol</label>
+                        <input type="text" id="symbol" placeholder="e.g., AAPL">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Purchase Date</label>
+                        <input type="date" id="date">
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>Notifications</h3>
-                    <p>Get alerts for important financial events and reminders.</p>
-                    <a href="#" class="btn">Manage Alerts</a>
+                <div class="action-group">
+                    <button type="button" class="btn" onclick="addPortfolioItem()">Add Item</button>
+                    <button type="button" class="btn" onclick="clearForm()">Clear</button>
                 </div>
+            </form>
+        </div>
+        <div id="posts">
+            <div class="post-item">
+                <div class="post-header">
+                    <div class="post-author">Finance+ Team</div>
+                    <div class="post-category">News</div>
+                </div>
+                <div class="post-title">Market Update: Stocks Rise</div>
+                <div class="post-content">The stock market saw a significant rise today due to positive economic indicators.</div>
+            </div>
+            <div class="post-item">
+                <div class="post-header">
+                    <div class="post-author">Expert Analyst</div>
+                    <div class="post-category">Tips</div>
+                </div>
+                <div class="post-title">Investment Tips for Beginners</div>
+                <div class="post-content">Start with diversified portfolios and long-term strategies for better returns.</div>
             </div>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2023 Finance+. All rights reserved.</p>
-    </footer>
+    
+        
+    <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column brand-info">
+      <h2 class="footer-logo">Finance+</h2>
+      <p>Securely managing your wealth with modern technology.</p>
+    </div>
 
-    <script src="dashboard.js"></script>
+    <div class="footer-column links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Support Center</a></li>
+        <li><a href="#">API Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column social">
+      <h3>Connect</h3>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/financeplus"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/financeplus"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.github.com/financeplus"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Finance+ Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+    <script>
+        let portfolioItems = [];
+
+        function showMessage(type, text) {
+            const messageEl = document.getElementById('message');
+            messageEl.className = `message ${type}`;
+            messageEl.textContent = text;
+            messageEl.style.display = 'block';
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 3000);
+        }
+
+        function filterStats(period) {
+            const buttons = document.querySelectorAll('.stats-overview .filters button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            // Simulate filtering - in a real app, update stats based on period
+            showMessage('success', `Filtered to ${period}`);
+        }
+
+        function addPortfolioItem() {
+            const asset = document.getElementById('asset').value;
+            const amount = document.getElementById('amount').value;
+            const symbol = document.getElementById('symbol').value;
+            const date = document.getElementById('date').value;
+
+            if (!amount || !symbol || !date) {
+                showMessage('error', 'Please fill in all fields.');
+                return;
+            }
+
+            portfolioItems.push({ asset, amount, symbol, date });
+            showMessage('success', 'Portfolio item added successfully!');
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById('portfolioForm').reset();
+        }
+    </script>
 </body>
 </html>

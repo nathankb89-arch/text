@@ -1,112 +1,82 @@
 
-        let currentUser = null;
-        let investments = [];
+            const form = document.getElementById('investment-form');
+             const message = document.getElementById('message');
+             const investmentsList = document.getElementById('investments-list');
+             const totalValueEl = document.getElementById('total-value');
+             const numInvestmentsEl = document.getElementById('num-investments');
+             const topPerformingEl = document.getElementById('top-performing');
 
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+             let investments = JSON.parse(localStorage.getItem('investments')) || [];
 
-            if (username && password) {
-                currentUser = username;
-                investments = [];
-                showMessage('Login successful!', 'success');
-                document.getElementById('loginSection').style.display = 'none';
-                document.getElementById('portfolioContainer').style.display = 'block';
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-                updatePortfolioDisplay();
-            }
-        }
+             function displayInvestments() {
+                 investmentsList.innerHTML = '';
+                 if (investments.length === 0) {
+                  investmentsList.innerHTML = '<div class="empty-state">No investments added yet. Add your first investment above!</div>';
+                  return;
+                 }
+                 investments.forEach((inv, index) => {
+                  const item = document.createElement('div');
+                  item.className = 'post-item';
+                  item.innerHTML = `
+                      <div class="post-header">
+                       <div class="post-author">${inv.name}</div>
+                       <div class="post-category">${inv.type}</div>
+                      </div>
+                      <div class="post-title">Invested: $${inv.amount} | Current: $${inv.currentValue}</div>
+                      <div class="post-content">${inv.notes || 'No notes'}</div>
+                      <button onclick="deleteInvestment(${index})" style="background: #e74c3c; color: white; border: none; padding: 0.5rem; border-radius: 5px; cursor: pointer;">Delete</button>
+                  `;
+                  investmentsList.appendChild(item);
+                 });
+                 updateStats();
+             }
 
-        function logout() {
-            currentUser = null;
-            investments = [];
-            document.getElementById('loginSection').style.display = 'flex';
-            document.getElementById('portfolioContainer').style.display = 'none';
-            document.getElementById('addInvestmentForm').classList.add('hidden');
-        }
+             function updateStats() {
+                 const totalValue = investments.reduce((sum, inv) => sum + parseFloat(inv.currentValue), 0);
+                 totalValueEl.textContent = `$${totalValue.toFixed(2)}`;
+                 numInvestmentsEl.textContent = investments.length;
+                 if (investments.length > 0) {
+                  const top = investments.reduce((prev, current) => (parseFloat(current.currentValue) > parseFloat(prev.currentValue)) ? current : prev);
+                  topPerformingEl.textContent = top.name;
+                 } else {
+                  topPerformingEl.textContent = 'N/A';
+                 }
+             }
 
-        function handleAddInvestment(event) {
-            event.preventDefault();
-            const investment = {
-                id: Date.now(),
-                name: document.getElementById('investmentName').value,
-                type: document.getElementById('investmentType').value,
-                initialAmount: parseFloat(document.getElementById('investmentAmount').value),
-                currentValue: parseFloat(document.getElementById('currentValue').value)
-            };
+             function showMessage(text, type) {
+                 message.textContent = text;
+                 message.className = `message ${type}`;
+                 message.style.display = 'block';
+                 setTimeout(() => {
+                  message.style.display = 'none';
+                 }, 3000);
+             }
 
-            investments.push(investment);
-            document.getElementById('investmentName').value = '';
-            document.getElementById('investmentType').value = '';
-            document.getElementById('investmentAmount').value = '';
-            document.getElementById('currentValue').value = '';
-            hideAddForm();
-            updatePortfolioDisplay();
-            showMessage('Investment added successfully!', 'success');
-        }
+             form.addEventListener('submit', (e) => {
+                 e.preventDefault();
+                 const name = document.getElementById('investment-name').value;
+                 const type = document.getElementById('investment-type').value;
+                 const amount = document.getElementById('investment-amount').value;
+                 const currentValue = document.getElementById('current-value').value;
+                 const notes = document.getElementById('notes').value;
 
-        function deleteInvestment(id) {
-            investments = investments.filter(inv => inv.id !== id);
-            updatePortfolioDisplay();
-            showMessage('Investment removed!', 'success');
-        }
+                 if (!name || !type || !amount || !currentValue) {
+                  showMessage('Please fill in all required fields.', 'error');
+                  return;
+                 }
 
-        function updatePortfolioDisplay() {
-            const totalValue = investments.reduce((sum, inv) => sum + inv.currentValue, 0);
-            const totalGain = investments.reduce((sum, inv) => sum + (inv.currentValue - inv.initialAmount), 0);
+                 investments.push({ name, type, amount, currentValue, notes, createdAt: new Date().toISOString() });
+                 localStorage.setItem('investments', JSON.stringify(investments));
+                 form.reset();
+                 displayInvestments();
+                 showMessage('Investment added successfully!', 'success');
+             });
 
-            document.getElementById('totalValue').textContent = '$' + totalValue.toFixed(2);
-            document.getElementById('totalGain').textContent = '$' + totalGain.toFixed(2);
-            document.getElementById('investmentCount').textContent = investments.length;
+             function deleteInvestment(index) {
+                 investments.splice(index, 1);
+                 localStorage.setItem('investments', JSON.stringify(investments));
+                 displayInvestments();
+                 showMessage('Investment deleted.', 'success');
+             }
 
-            const investmentsList = document.getElementById('investmentsList');
-            investmentsList.innerHTML = '';
-
-            if (investments.length === 0) {
-                investmentsList.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999;">No investments yet. Add one to get started!</p>';
-                return;
-            }
-
-            investments.forEach(inv => {
-                const gain = inv.currentValue - inv.initialAmount;
-                const gainPercent = ((gain / inv.initialAmount) * 100).toFixed(2);
-                const gainClass = gain >= 0 ? 'positive' : 'negative';
-
-                const item = document.createElement('div');
-                item.className = 'investment-item';
-                item.innerHTML = `
-                    <div>
-                        <h4>${inv.name}</h4>
-                        <p style="font-size: 0.9rem; color: #666;">${inv.type}</p>
-                        <p style="font-size: 0.85rem; color: #999;">Initial: $${inv.initialAmount.toFixed(2)}</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div class="investment-value">$${inv.currentValue.toFixed(2)}</div>
-                        <p style="color: ${gain >= 0 ? '#27ae60' : '#e74c3c'}; margin: 0.5rem 0;">${gain >= 0 ? '+' : ''}$${gain.toFixed(2)} (${gainPercent}%)</p>
-                        <button class="btn btn-danger" onclick="deleteInvestment(${inv.id})">Remove</button>
-                    </div>
-                `;
-                investmentsList.appendChild(item);
-            });
-        }
-
-        function showAddForm() {
-            document.getElementById('addInvestmentForm').classList.remove('hidden');
-        }
-
-        function hideAddForm() {
-            document.getElementById('addInvestmentForm').classList.add('hidden');
-        }
-
-        function showMessage(text, type) {
-            const messageEl = document.getElementById('message');
-            messageEl.textContent = text;
-            messageEl.className = 'message ' + type;
-            messageEl.style.display = 'block';
-            setTimeout(() => {
-                messageEl.style.display = 'none';
-            }, 3000);
-        }
-    
+             displayInvestments();

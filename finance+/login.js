@@ -18,10 +18,18 @@
                 return;
             }
 
-            showMessage('Login successful. Redirecting...', 'success');
-            setTimeout(() => {
-                window.location.href = '#';
-            }, 1200);
+            // Simulate login validation
+            if (email === 'user@example.com' && password === 'password') {
+                showMessage('Login successful. Redirecting...', 'success');
+                // Save login info to localStorage
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 1200);
+            } else {
+                showMessage('Invalid email or password. Please try again.', 'error');
+            }
         });
 
         forgotLink.addEventListener('click', function (event) {
@@ -34,22 +42,33 @@
             messageEl.className = 'message ' + type;
             messageEl.style.display = 'block';
         }
-         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const messageDiv = document.getElementById('message');
-
-            // Simulate login validation
-            if (email === 'user@example.com' && password === 'password') {
-                messageDiv.textContent = 'Login successful! Redirecting...';
-                messageDiv.style.color = 'green';
-                setTimeout(() => {
-                    window.location.href = '/dashboard.html';
-                }, 2000);
-            } else {
-                messageDiv.textContent = 'Invalid email or password. Please try again.';
-                messageDiv.style.color = 'red';
-            }
-        });
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
     
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+    
+    // Simple mock user data (in a real app, this would be from a backend)
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const user = storedUsers.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+        // Save session data
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        if (remember) {
+            localStorage.setItem('rememberMe', 'true');
+        }
+        // Redirect to profile page
+        window.location.href = 'profile.html';
+    } else {
+        document.getElementById('message').textContent = 'Invalid email or password.';
+        document.getElementById('message').style.color = 'red';
+    }
+});
+
+// Handle forgot password (simple alert for demo)
+document.getElementById('forgotLink').addEventListener('click', function(event) {
+    event.preventDefault();
+    alert('Forgot password functionality not implemented yet.');
+});

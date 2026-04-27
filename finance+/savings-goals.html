@@ -12,73 +12,90 @@
 </head>
 <body>
     <header>
-        <h1>Finance+</h1>
+        <h1>💰 Finance+</h1>
         <nav>
-            <button onclick="window.location.href='home.html'">Home</button>
-            <button onclick="openModal('login')">Login</button>
-            <button onclick="openModal('signup')">Sign Up</button>
+            <button><a href="home.html"><i class="fas fa-home"></i></a></button>
+            <button><a href="feature.html"><i class="fas fa-bars"></i></a></button>
         </nav>
     </header>
+
     <section class="hero">
-        <h2>Savings Goals</h2>
-        <p>Set and track your savings goals to achieve financial success.</p>
-        <button class="cta-button" onclick="openModal('addGoal')">Add New Goal</button>
+        <h2>Your Savings Goals</h2>
+        <p>Track your financial dreams and watch them come to life. Create, monitor, and achieve your savings goals with ease.</p>
     </section>
-    <section class="stats-summary" id="statsSummary">
-        <div class="stat-item">
-            <h4 id="totalGoals">0</h4>
-            <p>Active Goals</p>
+
+    <div class="container">
+        <div id="message" class="message"></div>
+
+        <div class="form-card">
+            <h3>Create a New Savings Goal</h3>
+            <form id="goalForm" onsubmit="addGoal(event)">
+                <div class="form-group">
+                    <label for="goalName">Goal Name *</label>
+                    <input type="text" id="goalName" placeholder="e.g., Vacation, Car, Emergency Fund" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetAmount">Target Amount ($) *</label>
+                    <input type="number" id="targetAmount" placeholder="Enter amount" min="1" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="currentAmount">Current Amount ($)</label>
+                    <input type="number" id="currentAmount" placeholder="0" min="0" step="0.01" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="deadline">Target Date</label>
+                    <input type="date" id="deadline">
+                </div>
+
+                <button type="submit" class="btn">Add Goal</button>
+            </form>
         </div>
-        <div class="stat-item">
-            <h4 id="totalSaved">$0</h4>
-            <p>Total Saved</p>
+
+        <h2 style="color: #667eea; margin-bottom: 1.5rem;">Your Goals</h2>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading your goals...</p>
         </div>
-        <div class="stat-item">
-            <h4 id="totalTarget">$0</h4>
-            <p>Total Target</p>
-        </div>
-        <div class="stat-item">
-            <h4 id="overallProgress">0%</h4>
-            <p>Overall Progress</p>
-        </div>
-    </section>
-    <section class="goals-section">
-        <h3>Your Savings Goals</h3>
-        <div class="goals-container" id="goalsContainer">
-            <!-- Goals will be dynamically added here -->
-        </div>
-    </section>
-    <section class="add-goal-section">
-        <h3>✨ Create New Goal</h3>
-        <form class="add-goal-form" onsubmit="addGoal(event)">
-            <div class="form-group">
-                <span class="form-icon">🎯</span>
-                <input type="text" id="goalName" placeholder="What's your goal?" required>
-            </div>
-            <div class="form-group">
-                <span class="form-icon">💰</span>
-                <input type="number" id="goalAmount" placeholder="Target Amount ($)" required>
-            </div>
-            <div class="form-group">
-                <span class="form-icon">📊</span>
-                <input type="number" id="currentAmount" placeholder="Current Saved ($)" required>
-            </div>
-            <button type="submit">Add Goal</button>
-        </form>
-    </section>
-    <div class="success-message" id="successMessage">
-        ✅ Goal added successfully! Keep saving!
+
+        <div id="goalsContainer" class="goals-grid"></div>
     </div>
-    <footer>
-        <p>&copy; 2026 Finance+. All rights reserved.</p>
-    </footer>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle">Modal Title</h3>
-            <div id="modalContent">Modal content goes here.</div>
-        </div>
+
+    <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column brand-info">
+      <h2 class="footer-logo">Finance+</h2>
+      <p>Securely managing your wealth with modern technology.</p>
     </div>
-    <script src="saving-goals.js"> </script>
+
+    <div class="footer-column links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Support Center</a></li>
+        <li><a href="#">API Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column social">
+      <h3>Connect</h3>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/financeplus"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/financeplus"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.github.com/financeplus"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Finance+ Inc. All rights reserved.</p>
+  </div>
+</footer>
+    
+
+    <script src="/saving-goals.js"></script>
 </body>
 </html>

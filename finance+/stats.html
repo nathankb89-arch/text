@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance+ Stats</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/stat.css" />
+</head>
+<body>
+    <header>
+        <h1>Finance+ Analytics</h1>
+        <nav>
+            <button><a href="home.html"><i class="fas fa-home"></i></a></button>
+            <button><a href="feature.html"><i class="fas fa-bars"></i></a></button>
+             <button><a href="contact.html"><i class="fas fa-phone"></i></a></button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero-card">
+            <div>
+                <h2>Finance+ app statistics dashboard</h2>
+                <p>Explore the latest performance metrics, adoption trends, and real-time insights for Finance+.</p>
+            </div>
+            <div class="hero-actions">
+                <button onclick="updateStats('today')">Today</button>
+                <button onclick="updateStats('last7')">7 Days</button>
+                <button onclick="updateStats('last30')">30 Days</button>
+            </div>
+        </div>
+
+        <div class="message success" id="statusMessage">Metrics loaded successfully.</div>
+
+        <div class="stats-overview">
+            <div class="filters">
+                <button class="active" data-period="today">Today</button>
+                <button data-period="last7">7 Days</button>
+                <button data-period="last30">30 Days</button>
+            </div>
+            <div class="summary">
+                <p>Updated: <strong id="lastUpdated">Just now</strong></p>
+                <p>Active dataset: <strong id="activePeriod">Today</strong></p>
+            </div>
+        </div>
+
+        <section class="stats" id="statsSection">
+            <article class="stat-box">
+                <div class="stat-label">Daily Active Users</div>
+                <div class="stat-value" id="statDAU">0</div>
+                <div class="stat-change" id="changeDAU">+0%</div>
+            </article>
+            <article class="stat-box">
+                <div class="stat-label">Monthly Savings</div>
+                <div class="stat-value" id="statSavings">$0</div>
+                <div class="stat-change" id="changeSavings">+0%</div>
+            </article>
+            <article class="stat-box">
+                <div class="stat-label">Growth Rate</div>
+                <div class="stat-value" id="statGrowth">0%</div>
+                <div class="stat-change" id="changeGrowth">Stable</div>
+            </article>
+            <article class="stat-box">
+                <div class="stat-label">Avg Session Length</div>
+                <div class="stat-value" id="statSession">0 min</div>
+                <div class="stat-change" id="changeSession">+0%</div>
+            </article>
+            <article class="stat-box">
+                <div class="stat-label">Support Requests</div>
+                <div class="stat-value" id="statTickets">0</div>
+                <div class="stat-change" id="changeTickets">-0%</div>
+            </article>
+            <article class="stat-box">
+                <div class="stat-label">App Rating</div>
+                <div class="stat-value" id="statRating">0.0</div>
+                <div class="stat-change" id="changeRating">+0</div>
+            </article>
+        </section>
+
+        <div class="portfolio-card" id="insightsSection">
+            <h3>Interactive Insights</h3>
+            <div class="post-item">
+                <div class="post-header">
+                    <span class="post-author">Revenue forecast</span>
+                    <span class="post-category">Performance</span>
+                </div>
+                <div class="post-title">Predict the next month with one click</div>
+                <div class="post-content">Use the selector below to choose the time window and generate a quick report for Finance+ growth and retention.</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="reportPeriod">Report Period</label>
+                    <select id="reportPeriod">
+                        <option value="today">Today</option>
+                        <option value="last7">Last 7 Days</option>
+                        <option value="last30">Last 30 Days</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="targetUsers">Target Users</label>
+                    <input type="number" id="targetUsers" value="12000" min="100" />
+                </div>
+            </div>
+
+            <div class="action-group">
+                <button class="btn" id="btnRefresh">Refresh Metrics</button>
+                <button class="btn" id="btnDownload">Download Report</button>
+                <button class="btn" id="btnCopy">Copy Summary</button>
+            </div>
+        </div>
+    </div>
+
+          <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column brand-info">
+      <h2 class="footer-logo">Finance+</h2>
+      <p>Securely managing your wealth with modern technology.</p>
+    </div>
+
+    <div class="footer-column links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Support Center</a></li>
+        <li><a href="#">API Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column social">
+      <h3>Connect</h3>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/financeplus"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/financeplus"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.github.com/financeplus"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Finance+ Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+    <script src="stat.js"></script>
+</body>
+</html>

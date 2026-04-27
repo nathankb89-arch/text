@@ -99,13 +99,18 @@
             setTimeout(() => box.style.display = 'none', 3000);
         }
 
-        // Logout
-        function logoutUser() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = 'index.html';
+       // Delete expense
+        function deleteExpense(id) {
+            if (confirm('Are you sure you want to delete this expense?')) {
+            expenses = expenses.filter(e => e.id !== id);
+            localStorage.setItem('expenses', JSON.stringify(expenses));
+            showMessage('Expense deleted!', 'success');
+            updateUI();
             }
         }
 
+
         // Initial load
         updateUI();
+
     

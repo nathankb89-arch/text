@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance+ - User Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+    <header>
+        <h1>💰 Finance+</h1>
+        <nav>
+            <button><a href="/home.html"><i class="fas fa-home"></i></a></button>
+            <button onclick="navigate('dashboard.html')">Dashboard</button>
+            <button onclick="navigate('investment.html')">Portfolio</button>
+            <button onclick="navigate('profile.html')" style="background: rgba(255, 255, 255, 0.4);">Profile</button>
+            <button><a href="/feature.html"><i class="fas fa-bars"></i></a></button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="message" class="message"></div>
+
+        <div class="profile-header">
+            <div class="profile-avatar" id="avatar">NK</div>
+            <div class="profile-info">
+                <h2 id="userName">Nathan Kiprono</h2>
+                <p><strong>Email:</strong> <span id="userEmail">nathankiprono202@email.com</span></p>
+                <p><strong>Member Since:</strong> <span id="memberSince">January 2023</span></p>
+                <p><strong>Account Status:</strong> <span id="accountStatus" style="color: #2ea15f; font-weight: bold;">Active</span></p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">Total Balance</div>
+                <div class="stat-value" id="totalBalance">$25,450.00</div>
+                <div class="stat-change">↑ 5.2% this month</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Investments</div>
+                <div class="stat-value" id="investmentCount">12</div>
+                <div class="stat-change">Across 5 sectors</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Returns</div>
+                <div class="stat-value" id="totalReturns">+$3,240</div>
+                <div class="stat-change">Year-to-date</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Savings Goal</div>
+                <div class="stat-value" id="savingsGoal">68%</div>
+                <div class="stat-change">Progress</div>
+            </div>
+        </div>
+
+        <div class="portfolio-card">
+            <h3>Edit Profile Information</h3>
+            <form onsubmit="updateProfile(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" value="Nathan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" value="Kiprono" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="nathankiprono202@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" value="+1 234 567 8900">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" value="123 Main Street, City, State">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode">ZIP Code</label>
+                        <input type="text" id="zipcode" value="12345">
+                    </div>
+                </div>
+                <div class="action-group">
+                    <button type="submit" class="btn">Save Changes</button>
+                    <button type="button" class="btn secondary" onclick="resetForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="portfolio-card">
+            <h3>Security Settings</h3>
+            <form onsubmit="changePassword(event)">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <button type="submit" class="btn">Update Password</button>
+                    <button type="button" class="btn secondary" onclick="resetPasswordForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button onclick="logout()" style="background-color: red; color: white; width: 80%; align-items: center;">Logout</button>
+
+        <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column brand-info">
+      <h2 class="footer-logo">Finance+</h2>
+      <p>Securely managing your wealth with modern technology.</p>
+    </div>
+
+    <div class="footer-column links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Support Center</a></li>
+        <li><a href="#">API Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column social">
+      <h3>Connect</h3>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/financeplus"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/financeplus"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.github.com/financeplus"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Finance+ Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="profile.js">
+      
+    </script>
+</body>
+</html>
