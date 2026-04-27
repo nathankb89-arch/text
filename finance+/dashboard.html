@@ -15,7 +15,7 @@
         <h1>💰 Finance+</h1>
         <nav>
             <button><a href="/home.html"><i class="fas fa-home"></i></a></button>
-               <button><a href="/feature.html"><i class="fas fa-star"></i></a></button>
+               <button><a href="/feature.html"><i class="fas fa-bars"></i></a></button>
         </nav>
     </header>
     <div class="container">
@@ -149,46 +149,7 @@
   </div>
 </footer>
 
-    <script>
-        let portfolioItems = [];
-
-        function showMessage(type, text) {
-            const messageEl = document.getElementById('message');
-            messageEl.className = `message ${type}`;
-            messageEl.textContent = text;
-            messageEl.style.display = 'block';
-            setTimeout(() => {
-                messageEl.style.display = 'none';
-            }, 3000);
-        }
-
-        function filterStats(period) {
-            const buttons = document.querySelectorAll('.stats-overview .filters button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            // Simulate filtering - in a real app, update stats based on period
-            showMessage('success', `Filtered to ${period}`);
-        }
-
-        function addPortfolioItem() {
-            const asset = document.getElementById('asset').value;
-            const amount = document.getElementById('amount').value;
-            const symbol = document.getElementById('symbol').value;
-            const date = document.getElementById('date').value;
-
-            if (!amount || !symbol || !date) {
-                showMessage('error', 'Please fill in all fields.');
-                return;
-            }
-
-            portfolioItems.push({ asset, amount, symbol, date });
-            showMessage('success', 'Portfolio item added successfully!');
-            clearForm();
-        }
-
-        function clearForm() {
-            document.getElementById('portfolioForm').reset();
-        }
-    </script>
+    <script src="dashboard.js"></script>
+        
 </body>
 </html>
